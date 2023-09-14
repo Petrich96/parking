@@ -47,7 +47,7 @@ class _ParkingPageState extends State<ParkingPage> {
     super.initState();
     latControl.text = "55.750626";
     lngControl.text = "37.597664";
-    scaleControl.text  = '19';
+    scaleControl.text = '19';
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _refreshMap();
     });
@@ -74,7 +74,8 @@ class _ParkingPageState extends State<ParkingPage> {
     y = (y_p / 256).floor();
 
     imgURL =
-        "https://core-carparks-renderer-lots.maps.yandex.net/maps-rdr-carparks/tiles?l=carparks&x=$x&y=$y&z=${scaleControl.text}&scale=1&lang=ru_RU";
+    "https://core-carparks-renderer-lots.maps.yandex.net/maps-rdr-carparks/tiles?l=carparks&x=$x&y=$y&z=${scaleControl
+        .text}&scale=1&lang=ru_RU";
     setState(() {});
   }
 
@@ -143,7 +144,7 @@ class _ParkingPageState extends State<ParkingPage> {
                 child: CachedNetworkImage(
                   // placeholder: (context, url) => const CircularProgressIndicator(),
                   errorWidget: (context, _, __) =>
-                      const Center(child: Text("Нет парковки")),
+                  const Center(child: Text("Нет парковки")),
                   imageUrl: imgURL,
                 ),
               ),
@@ -163,12 +164,21 @@ class _ParkingPageState extends State<ParkingPage> {
             ),
           )
         ]),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+        floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
         floatingActionButton: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            FloatingActionButton(child: const Text("+"), onPressed: ()=>{scaleControl.text = "${int.parse(scaleControl.text) + 1}"}),
+            FloatingActionButton(child: const Text("+"),
+                onPressed: () =>
+                {
+                  scaleControl.text = "${int.parse(scaleControl.text) + 1}"
+                }),
             const SizedBox(height: 5,),
-            FloatingActionButton(child: const Text("-"), onPressed: ()=>{scaleControl.text = "${int.parse(scaleControl.text)- 1}"}),
+            FloatingActionButton(child: const Text("-"),
+                onPressed: () =>
+                {
+                  scaleControl.text = "${int.parse(scaleControl.text) - 1}"
+                }),
           ],
         ),
       ),
